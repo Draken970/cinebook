@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CineBook</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>CineBook 🎬</h1>
+    <div id="seat-map">Loading seats...</div>
+    <button id="book-btn" disabled>Select seats first</button>
+    <div id="message"></div>
+
+    <!-- This line loads Socket.io from your server — MUST be before app.js -->
+    <script src="/socket.io/socket.io.js"></script>
+
+    <!-- Your app code -->
+    <script src="app.js"></script>
+  </body>
+</html>

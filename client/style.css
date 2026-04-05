@@ -1,0 +1,67 @@
+body {
+  font-family: sans-serif;
+  padding: 20px;
+  background: #0b0c10;
+  color: white;
+}
+
+#seat-map {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.seat {
+  width: 48px;
+  height: 40px;
+  border-radius: 6px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+.seat.available {
+  background: #1c2e24;
+  color: #2ec4b6;
+  border: 1.5px solid #2ec4b6;
+}
+.seat.available:hover {
+  background: #2ec4b6;
+  color: #000;
+}
+.seat.selected {
+  background: #e63946;
+  color: white;
+}
+.seat.taken {
+  background: #2a2b3a;
+  color: #444;
+  cursor: not-allowed;
+}
+
+.seat.locked {
+  background: #5c4a1e;
+  color: #c97d0a;
+  border: 1.5px solid #c97d0a;
+  cursor: not-allowed;
+}
+
+#book-btn {
+  padding: 12px 28px;
+  font-size: 1rem;
+  background: #e63946;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+#book-btn:disabled {
+  background: #333;
+  color: #666;
+  cursor: not-allowed;
+}
+#message {
+  margin-top: 16px;
+  color: #2ec4b6;
+  font-size: 1rem;
+}
