@@ -1,14 +1,16 @@
 const pool = require("./db");
 const redis = require("redis");
 
-// Create Redis client
+// Creating Redis client
 const redisClient = redis.createClient({
-  host: "localhost",
-  port: 6379,
+  socket: {
+    host: process.env.REDIS_HOST || "localhost",
+    port: process.env.REDIS_PORT || 6379,
+  },
 });
 
 redisClient.on("error", function (err) {
-  console.error("Redis error:", err.message);
+  console.error(err);
 });
 
 redisClient.on("connect", function () {
@@ -24,18 +26,18 @@ function setupSocket(io) {
     console.log("User connected: " + socket.id);
 
     socket.on("join_show", async function (data) {
-      const showId = data.showId;
+      const showId = data.showId; //adds them to socket room for that particular show
       socket.join(showId);
 
       try {
         const result = await pool.query(
-          "SELECT * FROM seats WHERE show_id = $1",
-          [showId],
+          "SELECT * FROM public.seats WHERE show_id = $1",
+          [showId], //fetches all seats from that show
         );
 
-        // For each seat, check Redis for lock info
         const seats = result.rows;
         for (const seat of seats) {
+          // For each seat, check Redis for lock info
           if (seat.status === "locked") {
             // Check if Redis lock still exists
             const lockKey = "lock:" + showId + ":" + seat.id;
@@ -55,7 +57,7 @@ function setupSocket(io) {
 
         socket.emit("seat_states", { seats: seats });
       } catch (err) {
-        console.error("Error:", err.message);
+        console.error(err);
       }
     });
 
@@ -76,6 +78,7 @@ function setupSocket(io) {
           socket.emit("lock_failed", { seatId: seatId });
           return;
         }
+        ``;
 
         // SET NX = "Set if Not eXists" — ATOMIC operation
         // This is the magic that prevents double booking!

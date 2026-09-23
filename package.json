@@ -1,20 +1,23 @@
-{
-  "name": "cinebook",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "dependencies": {
-    "dotenv": "^17.4.0",
-    "express": "^5.2.1",
-    "pg": "^8.20.0",
-    "redis": "^5.11.0",
-    "socket.io": "^4.8.3"
-  }
+﻿{
+    "name":  "cinebook",
+    "version":  "1.0.0",
+    "description":  "",
+    "main":  "server/index.js",
+    "scripts":  {
+                    "start":  "node server/index.js",
+                    "test":  "echo \"Error: no test specified\" \u0026\u0026 exit 1"
+                },
+    "keywords":  [
+
+                 ],
+    "author":  "",
+    "license":  "ISC",
+    "type":  "commonjs",
+    "dependencies":  {
+                         "dotenv":  "^17.4.0",
+                         "express":  "^5.2.1",
+                         "pg":  "^8.20.0",
+                         "redis":  "^5.11.0",
+                         "socket.io":  "^4.8.3"
+                     }
 }
